@@ -1,17 +1,12 @@
+import Part from "./Part"
 const Content=({part1,...props})=>{
 /*THis means use part1 directly, but rest ofthe thinsg use props */
 
     return(
         <>
-        <ul>{part1}
-        <li>{props.ex1} exercises</li>
-        </ul>
-         <ul>{props.part2} 
-        <li>{props.ex2} exercises</li>
-        </ul>
-         <ul>{props.part3}
-        <li>{props.ex3}exercises</li>
-        </ul>
+        <Part name={part1} ex={props.ex1}/>
+        <Part name={props.part2} ex={props.ex2}/>
+        <Part name={props.part3} ex={props.ex3}/>
         </>
     )
 }
