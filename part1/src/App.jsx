@@ -4,23 +4,19 @@ import ZeroButton from "../components/ZeroButton"
 import Counter from "../components/Counter"
 import { useState } from "react"
 const App = () => {
- const [count,setCount]=useState(0)
-
- const handleDecrease=()=>{
-  console.log("decreased,clicked")
-  setCount(count-1)}
-
-
+ const [count,setCount]=useState(
+  {
+  up:0,
+  down:0
+ }
+)
 
   return (
     <>
-    <Counter count={count}/>
+    <p>count value: {count['down']}</p>
 
-  <IncreaseButton setCount={setCount} count={count}/>
-  <ZeroButton setCount={setCount}/>
-  <DecreaseButton onDecrease={handleDecrease}/>
-  {/*React's own official tutorial suggests: "In React, it’s conventional to use onSomething names for props
-   which take functions which handle events and handleSomething for the actual function definitions which handle those events." */}
+      <button onClick={()=>  setCount({up:0,down:count['down']-1})}>Minus</button>
+   
     </>
   )
 }

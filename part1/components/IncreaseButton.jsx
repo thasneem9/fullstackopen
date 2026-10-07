@@ -1,12 +1,4 @@
-const IncreaseButton=({setCount,count})=>{
-
-
-    return(
-
-        <>
-        <button onClick={()=>setCount(count+1)}>increase</button>
-        </>
-    )
-}
+const IncreaseButton=({setCount,count})=><button onClick={()=>setCount(count+1)}>Increase</button>
 
 export default IncreaseButton
+
