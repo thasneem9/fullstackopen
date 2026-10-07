@@ -1,4 +1,7 @@
-
+import Content from "../components/Content"
+import Counter from "../components/Counter"
+import IncreaseButton from "../components/IncreaseButton"
+import ZeroButton from "../components/ZeroButton"
 import { useState } from "react"
 const App = () => {
  const [count,setCount]=useState(0)
@@ -8,10 +11,10 @@ const App = () => {
 
   return (
     <>
-    <button onClick={()=>console.log("yo, im clicked")}>console log info</button>
-   {/*  <button onClick={setCount(count+1)}>increase counter</button>   THIs shit breaks bcs event handler must be a function*/}
-   <button onClick={()=>setCount(count+1)}>increase counter</button>
-    <p>count:{count}</p>
+  <Counter count={count}/>
+  <IncreaseButton setCount={setCount} count={count}/>
+  <ZeroButton setCount={setCount}/>
+
     </>
   )
 }
