@@ -1,33 +1,33 @@
 import { useState } from "react"
 const App = () => {
 
- const [count,setCount]=useState(
-  {
-  up:0,
-  down:0
- })
- const [clickList,setClickList]=useState([])
- const handlePlus=()=>{
-  setCount({...count,up:count['up']+1})
-  console.log(count)
-  setClickList(clickList.concat('P'))
+const [A,setA]=useState(0)
+const [B,setB]=useState(0)
+const [total,setTotal]=useState(0)
+
+
+ const handleA=()=>{
+  const updatedA=A+1 //init: 0+1=1 
+  setA(updatedA) 
+  setTotal(updatedA+B) //uses the var instead of actual state that hasn't been updated yet
+   
+ }//finally A is officially set to 1
+
+  const handleB=()=>{
+  const updatedB=B+1 //init: 0+1=1 
+  setB(updatedB) 
+  setTotal(updatedB+A) //uses the var instead of actual state that hasn't been updated yet
    
  }
- const handleMinus=()=>{
-  setCount({...count,down:count['down']-1})
-  console.log(count)
-  setClickList(clickList.concat('M'))
-   
- }
+
   return (
     <>
-       <button onClick={handlePlus}>plus</button>
-       <p>up value is noow: {count['up']}</p>
-
-        <button onClick={handleMinus}> minus</button>
-       <p>down value is noow: {count['down']}</p>
-
-       <h3>LIST OF BUTTONS CLICKED: {clickList.join('~')}</h3>
+    
+      <p>Total count is: {total}</p>
+        <button onClick={handleA}>increment A</button>
+      <p>A count is noow: {A}</p>
+        <button onClick={handleB}>increment B</button>
+      <p>A count is noow: {B}</p>
     </>
   )
 }
