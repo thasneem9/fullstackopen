@@ -1,33 +1,31 @@
 import { useState } from "react"
 const App = () => {
 
- const [count,setCount]=useState(
-  {
-  up:0,
-  down:0
- })
- const [clickList,setClickList]=useState([])
- const handlePlus=()=>{
-  setCount({...count,up:count['up']+1})
-  console.log(count)
-  setClickList(clickList.concat('P'))
+const [A,setA]=useState(0)
+const [B,setB]=useState(0)
+const [total,setTotal]=useState(0)
+
+
+ const handleA=()=>{
+  
+  setA(A+1) 
+  setTotal(A+B) 
+ }
+
+  const handleB=()=>{
+ setB(B+1)
+  setTotal(A+B)
    
  }
- const handleMinus=()=>{
-  setCount({...count,down:count['down']-1})
-  console.log(count)
-  setClickList(clickList.concat('M'))
-   
- }
+
   return (
     <>
-       <button onClick={handlePlus}>plus</button>
-       <p>up value is noow: {count['up']}</p>
-
-        <button onClick={handleMinus}> minus</button>
-       <p>down value is noow: {count['down']}</p>
-
-       <h3>LIST OF BUTTONS CLICKED: {clickList.join('~')}</h3>
+    
+      <p>Total count is: {total}</p>
+        <button onClick={handleA}>increment A</button>
+      <p>A count is noow: {A}</p>
+        <button onClick={handleB}>increment B</button>
+      <p>B count is noow: {B}</p>
     </>
   )
 }
