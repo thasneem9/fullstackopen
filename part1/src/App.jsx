@@ -1,3 +1,4 @@
+import History from "../components/History"
 import { useState } from "react"
 const App = () => {
 
@@ -5,11 +6,15 @@ const [A,setA]=useState(0)
 const [B,setB]=useState(0)
 const [total,setTotal]=useState(0)
 
+const [clickList,setClickList]=useState([])
+
 
  const handleA=()=>{
   const updatedA=A+1 //init: 0+1=1 
   setA(updatedA) 
   setTotal(updatedA+B) //uses the var instead of actual state that hasn't been updated yet
+
+  setClickList([...clickList,'A'])
    
  }//finally A is officially set to 1
 
@@ -17,6 +22,9 @@ const [total,setTotal]=useState(0)
   const updatedB=B+1 //init: 0+1=1 
   setB(updatedB) 
   setTotal(updatedB+A) //uses the var instead of actual state that hasn't been updated yet
+
+    setClickList([...clickList,'B'])
+
    
  }
 
@@ -28,7 +36,9 @@ const [total,setTotal]=useState(0)
       <p>A count is noow: {A}</p>
         <button onClick={handleB}>increment B</button>
       <p>A count is noow: {B}</p>
-    </>
+
+      <History clickList={clickList}/>
+          </>
   )
 }
 export default App  
