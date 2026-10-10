@@ -1,5 +1,7 @@
 import History from "../components/History"
+import Button from "../components/Button"
 import { useState } from "react"
+import RoughExperiment from "../components/RoughExperiment"
 const App = () => {
 
 const [A,setA]=useState(0)
@@ -31,13 +33,8 @@ const [clickList,setClickList]=useState([])
   return (
     <>
     
-      <p>Total count is: {total}</p>
-        <button onClick={handleA}>increment A</button>
-      <p>A count is noow: {A}</p>
-        <button onClick={handleB}>increment B</button>
-      <p>A count is noow: {B}</p>
-
-      <History clickList={clickList}/>
+    <RoughExperiment/>
+      
           </>
   )
 }
