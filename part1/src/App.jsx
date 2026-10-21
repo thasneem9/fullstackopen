@@ -1,45 +1,24 @@
-import History from "../components/History"
-import Button from "../components/Button"
-import { useState } from "react"
-import RoughExperiment from "../components/RoughExperiment"
-const App = () => {
+import {useState}from 'react'
 
-const [A,setA]=useState(0)
-const [B,setB]=useState(0)
+const App=()=>{
+const [good,setGood]=useState(0)
 const [total,setTotal]=useState(0)
+const [avg,setAvg]=useState(0)
+const handleGood=()=>{
+    setGood(good+1)
+            setTotal(total+1)
+                        
+                                        setAvg(avgValue+1)
 
-const [clickList,setClickList]=useState([])
+                                                            console.log(good)
+0
+                                                                                }
 
-
- const handleA=()=>{
-  const updatedA=A+1 //init: 0+1=1 
-  setA(updatedA) 
-  setTotal(updatedA+B) //uses the var instead of actual state that hasn't been updated yet
-
-  setClickList([...clickList,'A'])
-   
- }//finally A is officially set to 1
-
-  const handleB=()=>{
-  const updatedB=B+1 //init: 0+1=1 
-  setB(updatedB) 
-  setTotal(updatedB+A) //uses the var instead of actual state that hasn't been updated yet
-
-    setClickList([...clickList,'B'])
-
-   
- }
-
-  return (
-    <>
-    
-    <RoughExperiment/>
-      
-          </>
-  )
-}
-export default App  
-
-
-
-
+                                                                                                    return( 
+                                                                                                                        <> 
+                                                                                                                                            <h1>course feeback</h1>
+                                                                                                                                                                <button onClick={handleGood}>good</button>
+                                                                                                                                                                                    <p>avg score: {avg/total*100}</p>
+                                                                                                                                                                                                        </>
+                                                                                                                                                                                                                            )
+                                                                                                                                                                                                                                            }
