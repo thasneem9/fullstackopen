@@ -1,7 +1,29 @@
-  import { useState } from "react"
-import StatisticLine from "../components/StatisticLine"
-import Button from "../components/Button"
-const App=()=>{
+
+import Note from "../components/Note"
+
+const App=({notes})=>{
+
+
+  return(
+
+
+    <>
+    <h1>Notes</h1>
+    <ul>
+      { notes.map((note) => <Note key={note.id} content={note.content}/>)}
+    </ul>
+    
+   
+  
+    </>
+  )
+}
+export default App 
+
+
+
+/*
+const App=({notes})=>{
   const [good,setGood]=useState(0)
   const [bad,setBad]=useState(0)
   const [neutral,setNeutral]=useState(0)
@@ -25,12 +47,6 @@ const App=()=>{
   setNeutral(neutral+1)
    setTotal(total+1)
   }
- {/*   <p >good:{good}</p>
-    <p >bad:{bad}</p>
-    <p >neutral:{neutral}</p>
-    <p >avg:{good?(avg/total)*100:0}%</p>
-    <p >positive:{good?(good/total)*100:0}%</p> */}
-
 
   return(
 
@@ -57,36 +73,6 @@ const App=()=>{
 }
 export default App 
 
-
-
-
-
-/* import { useState } from "react"
-
-
-const App=()=>{
- let x=0;
-
-  const handleX=()=>{
-
-  x+=1
-    console.log("x value:",x)
-  }
-
-  
-
-
-  return(
-
-    <>
-    <h1>Feedback website</h1>
-    <button onClick={handleX}>X button</button>
-    <p>{x}</p>
-
-    
-    </>
-  )
-}
-export default App */
+ */
 
  
