@@ -1,10 +1,10 @@
 
-const Course=({courses})=>{
+const Course=(props)=>{
+const c=props.course
 
 
-    return(<>
-    {courses.map(c=>(
-      <div key={c.id}>
+    return(
+     <div key={c.id}>
       <h1>{c.name}</h1>
         { c.parts.map(p=>(<p key={p.id}>{p.name} {p.exercises}</p>))}
 
@@ -14,11 +14,8 @@ const Course=({courses})=>{
        }
      </p>
    
-    </div> ))}
-
-
-    </>)
+    </div> 
+    )
 }
 
 export default Course
-
