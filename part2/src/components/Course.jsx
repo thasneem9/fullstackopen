@@ -1,17 +1,22 @@
-import { useState } from "react"
-const Course=({course})=>{
 
-    
-const result = course.parts.reduce((accumulator, arr) => {
-  return accumulator + arr.exercises
-}, 0)
+const Course=({courses})=>{
+
 
     return(<>
-    <h1>{course.name}</h1>
-    {course.parts.map(c=><p key={c.id}>{c.name} {c.exercises}</p>
-                    )}
+    {courses.map(c=>(
+      <div key={c.id}>
+      <h1>{c.name}</h1>
+        { c.parts.map(p=>(<p key={p.id}>{p.name} {p.exercises}</p>))}
 
-                    <h3>total exercises:{result}</h3>
+      <p> total: { c.parts.reduce((accumulator, arr) => {
+          return accumulator + arr.exercises
+    }, 0)
+       }
+     </p>
+   
+    </div> ))}
+
+
     </>)
 }
 
