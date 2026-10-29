@@ -1,9 +1,10 @@
 import { useState } from "react"
 
 const App=()=>{
-const [contacts,setContacts]=useState([{'name':'alice','important':true},{'name':'john'}])
+const [contacts,setContacts]=useState([{'name':'alice','important':true},{'name':'alan'},{'name':'ALEX'},{'name':'alex-connnor'}])
 const [showImp,setShowImp]=useState(false)
 const [imp,setImp]=useState(false)
+const [searchItem,setSearchItem]=useState('')
 const [number,setNumber]=useState()
 
 
@@ -39,7 +40,10 @@ const handleShowImp=(e)=>{
 
   return(<>
   <h1>pb</h1>
-  <div>
+  {/*search/filter contacts */}
+  <label>Search contact:<input type='text' value={searchItem} onChange={(e)=>setSearchItem(e.target.value)}/></label>
+  {contacts.filter(c=>c.name.toLowerCase().includes(searchItem.toLowerCase())).map((n,i)=>(<p key={i}>{n.name}</p>))}
+
     <form onSubmit={handleAddContact}>
       <label>name:
       <input placeholder="John Doe" onChange={(e)=>setName(e.target.value)} value={name}  />
@@ -63,10 +67,8 @@ const handleShowImp=(e)=>{
       <br/> 
       <button onClick={handleShowImp}>{showImp?'show all':'show important contacts'}</button>
     </form>
-  </div>
  
   <h1>cntcss:</h1>
-  
   {showImp?contacts.filter(c=>c.important===true).map((c,i)=>(<p key={i}>{c.name}</p>)):contacts.map((c,i)=>(<p key={i}>{c.name}</p>))}
 
 
