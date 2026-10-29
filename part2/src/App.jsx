@@ -1,9 +1,20 @@
-import { useState } from "react"
+import { useState ,useEffect} from "react"
 import SearchFilter from "./components/SearchFIlter"
 import AddContactForm from "./components/AddContactForm"
 import DisplayContacts from "./components/DisplayContacts"
-
+import axios from 'axios'
 const App=()=>{
+
+useEffect(()=>{
+  const promise=axios.get('http://localhost:3001/notes')
+  promise.then(response=>{
+    console.log(response.data)
+   
+  })
+},[])
+
+
+
 
 const [contacts,setContacts]=useState([
   {'name':'alice','important':true,'number':9876543456789},
