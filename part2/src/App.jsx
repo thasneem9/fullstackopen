@@ -7,17 +7,17 @@ import dbcontacts from '../db.json'
 const App=()=>{
 
 
-const [contacts,setContacts]=useState([dbcontacts.contacts])
+const [contacts,setContacts]=useState(dbcontacts.contacts)
+    const [imp,setImp]=useState(false)//bcs 2 components need this
 
-
+//GET REQ
 useEffect(()=>{
   const promise=axios.get('http://localhost:3001/contacts') //shud be name of the json
   promise.then(response=>{
-    console.log(response.data)
+    console.log(response)
     setContacts(response.data)
       })
 },[])
-
 
 
 
@@ -25,8 +25,8 @@ useEffect(()=>{
   <h1>pb</h1>
 
     <SearchFilter contacts={contacts}/>
-   <AddContactForm contacts={contacts} setContacts={setContacts}/>
-   <DisplayContacts contacts={contacts}/>
+   <AddContactForm contacts={contacts} setContacts={setContacts} imp={imp} setImp={setImp}/>
+   <DisplayContacts contacts={contacts} setContacts={setContacts} setImp={setImp}/>
  
    
   </>)

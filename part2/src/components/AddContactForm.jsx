@@ -1,21 +1,38 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
+import axios from 'axios'
 
 const AddContactForm=({contacts,setContacts})=>{
-    const [imp,setImp]=useState(false)
-    const [number,setNumber]=useState()
+
+    const [number,setNumber]=useState('')
 const [name,setName]=useState('')
-  let newContact={'name':'','imp':false}
+const [imp,setImp]=useState(false)
+
+
+
+
+  let newContact={'name':'','important':false,'number':404404}
 
   const checkDuplicate=(arr,val)=>{
     return arr.some(arrVal=>arrVal.name===val)
 
   }
+  
 const handleAddContact=(e)=>{
   e.preventDefault()
-    newContact.name=name
-  newContact.imp=imp
-checkDuplicate(contacts,name)?alert(`${name} already exists`):setContacts([...contacts,newContact])
+  
+  newContact.name=name
+  newContact.important=imp
+  newContact.number=number
 
+  if(checkDuplicate(contacts,name)){
+      alert(`${name} already exists`)}
+  else{
+        //setContacts([...contacts,newContact]) needed to update in UI ????
+        const promise=axios.post('http://localhost:3001/contacts',newContact)
+          promise.then(response=>{
+            console.log("posetd",response.data)
+          })
+  }
 }
 
     return(<>
@@ -34,7 +51,7 @@ checkDuplicate(contacts,name)?alert(`${name} already exists`):setContacts([...co
       <br/>
       
       <label> Mark important
-      <input type='checkbox'  onChange={(e)=>setImp(e.target.checked)} required />
+      <input type='checkbox'  onChange={(e)=>setImp(e.target.checked)}  />
        </label>
       
       <br/>
