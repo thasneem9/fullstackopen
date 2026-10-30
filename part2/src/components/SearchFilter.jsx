@@ -3,7 +3,7 @@ import { useState } from "react"
 const SearchFilter=({contacts})=>{
 const [searchItem,setSearchItem]=useState('')
 
-
+console.log("contacts props",contacts)
     return(<>
       {/*search/filter contacts */}
   <label>Search contact:<input type='text' value={searchItem} onChange={(e)=>setSearchItem(e.target.value)}/></label>

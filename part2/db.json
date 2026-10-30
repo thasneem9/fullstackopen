@@ -1,27 +1,16 @@
 {
-    "notes":[
-    {"id":1,
-    "content":"jane doe",
-    "important":true},
-
-    {"id":2,
-    "content":"abcdefg",
-    "important":true},
-    {
-      "id": 3,
-      "content": "Browser can execute only JavaScript",
-      "important": false
-    },
-    {
-      "id": 4,
-      "content": "GET and POST are the most important methods of HTTP protocol",
-      "important": true
-    },
-     {
-      "id": 5,
-      "content": "Gajsh uhkwls jkash methods of HTTP protocol",
-      "important": true
-    }
-
+    "contacts":[
+        {"id":1,
+        "name":"alice",
+        "important":true},
+        {"id":2,
+        "name":"alim",
+        "important":false},
+        {"id":3,
+        "name":"alex mor",
+        "important":false},
+        {"id":4,
+        "name":"ALEX kandle",
+        "important":false}
     ]
 }
