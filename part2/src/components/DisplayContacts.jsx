@@ -24,7 +24,7 @@ const DisplayContacts=({contacts,setContacts})=>{
              console.log("updatedContact: ",updatedContact)
 
         //update the data in json-server:
-        //const promise=axios.put(`http://localhost:3001/contacts/${id}`,updatedContact)
+        
         const promise=services.updateNote(id,updatedContact)
         promise.then(response=>{
             console.log("resp:",response)
@@ -35,6 +35,15 @@ const DisplayContacts=({contacts,setContacts})=>{
            return c.id==id?updatedContact:c
         }))
     
+    }
+    const handleDelete=(id)=>{
+        const promise=services.deleteNote(id)
+        promise.then(response=>{
+            console.log("DELETED",response.data)
+        }).catch(error=>{
+            console.log("ERROR DELETING",error)
+        })
+
     }
 
     

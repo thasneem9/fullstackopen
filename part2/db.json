@@ -29,24 +29,6 @@
       "important": true,
       "number": "1245637",
       "id": "tlVaSUxEDzQ"
-    },
-    {
-      "name": "bheem",
-      "important": true,
-      "number": "1245637",
-      "id": "OovBM4o9yC8"
-    },
-    {
-      "name": "aaaaaaaaaaaa",
-      "important": false,
-      "number": "11111111111",
-      "id": "pxOIe2VeSto"
-    },
-    {
-      "name": "kkkkayte",
-      "important": false,
-      "number": "76899",
-      "id": "pgKW3iAU6y8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
