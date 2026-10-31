@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from 'axios'
+import services from "../services/services"
 
 
 const DisplayContacts=({contacts,setContacts})=>{
@@ -23,7 +24,8 @@ const DisplayContacts=({contacts,setContacts})=>{
              console.log("updatedContact: ",updatedContact)
 
         //update the data in json-server:
-        const promise=axios.put(`http://localhost:3001/contacts/${id}`,updatedContact)
+        //const promise=axios.put(`http://localhost:3001/contacts/${id}`,updatedContact)
+        const promise=services.updateNote(id,updatedContact)
         promise.then(response=>{
             console.log("resp:",response)
         })
@@ -34,6 +36,8 @@ const DisplayContacts=({contacts,setContacts})=>{
         }))
     
     }
+
+    
 
 
 
@@ -48,6 +52,9 @@ const DisplayContacts=({contacts,setContacts})=>{
     <div key={i}>
     <p > name:{cx.name} {cx.number}</p>
     <button  onClick={()=>toggleImportance(cx.id,cx.important)}>{cx.important?'mark as not imp':'mark as imp'}</button>
+    
+    
+    <button onClick={()=>handleDelete(cx.id)}>delete</button>
     </div>
      ))}
 

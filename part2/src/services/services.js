@@ -15,8 +15,22 @@ const addNote=(newNote)=>{
       return promise.then(response=>response.data)
 }
 
-const updateNote=(updatedNote)=>{
-    const promise=axios.put(baseURL,updatedNote)
+const updateNote=(id,updatedNote)=>{
+    const promise=axios.put(`${baseURL}/${id}`,updatedNote)
       return promise.then(response=>response.data)
 }
-export default {getAll,addNote,updateNote} //exports AN OOBJECT WITH all 3 functions
+
+
+
+
+
+
+const deleteNote=(id)=>{
+const promise=axios.delete(`${baseURL}/${id}`)
+return promise.then(response=>{
+    return response.data
+})
+
+
+}
+export default {getAll,addNote,updateNote,deleteNote} //exports AN OOBJECT WITH all 3 functions
