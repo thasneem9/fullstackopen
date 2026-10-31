@@ -4,6 +4,9 @@ import AddContactForm from "./components/AddContactForm"
 import DisplayContacts from "./components/DisplayContacts"
 import axios from 'axios'
 import dbcontacts from '../db.json'
+
+
+import services from "./services/services.js"
 const App=()=>{
 
 
@@ -12,11 +15,13 @@ const [contacts,setContacts]=useState(dbcontacts.contacts)
 
 //GET REQ
 useEffect(()=>{
-  const promise=axios.get('http://localhost:3001/contacts') //shud be name of the json
-  promise.then(response=>{
-    console.log(response)
-    setContacts(response.data)
-      })
+  const data=services.getAll() 
+  data.then(response=>{
+  console.log("useffect log:",response)
+    setContacts(response)
+  }
+  )
+      
 },[])
 
 

@@ -1,16 +1,17 @@
 import { useState,useEffect } from "react"
 import axios from 'axios'
+import services from "../services/services"
 
 const AddContactForm=({contacts,setContacts})=>{
 
-    const [number,setNumber]=useState('')
+const [number,setNumber]=useState('')
 const [name,setName]=useState('')
 const [imp,setImp]=useState(false)
 
 
 
 
-  let newContact={'name':'','important':false,'number':404404}
+let newContact={'name':'','important':false,'number':404404}
 
   const checkDuplicate=(arr,val)=>{
     return arr.some(arrVal=>arrVal.name===val)
@@ -28,10 +29,10 @@ const handleAddContact=(e)=>{
       alert(`${name} already exists`)}
   else{
         //setContacts([...contacts,newContact]) needed to update in UI ????
-        const promise=axios.post('http://localhost:3001/contacts',newContact)
-          promise.then(response=>{
-            console.log("posetd",response.data)
-          })
+        const data=services.addNote(newContact)
+          
+            console.log(data)
+          
   }
 }
 
