@@ -1,18 +1,6 @@
 {
   "contacts": [
     {
-      "id": "1",
-      "name": "alice",
-      "important": true,
-      "number": "0987654"
-    },
-    {
-      "id": "2",
-      "name": "alim",
-      "important": false,
-      "number": "0987654"
-    },
-    {
       "id": "3",
       "name": "alex mor",
       "important": false,
@@ -27,7 +15,7 @@
     {
       "name": "yohan",
       "important": true,
-      "number": "8075583121",
+      "number": "122",
       "id": "tlVaSUxEDzQ"
     }
   ],

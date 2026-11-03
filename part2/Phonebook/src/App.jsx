@@ -1,7 +1,7 @@
 import { useState ,useEffect} from "react"
-import SearchFilter from "./components/SearchFilter"
-import AddContactForm from "./components/AddContactForm"
-import DisplayContacts from "./components/DisplayContacts"
+import SearchFilter from "./components/SearchFilter.jsx"
+import AddContactForm from "./components/AddContactForm.jsx"
+import DisplayContacts from "./components/DisplayContacts.jsx"
 import axios from 'axios'
 import dbcontacts from '../db.json'
 
@@ -27,7 +27,7 @@ useEffect(()=>{
 
 
   return(<>
-  <h1>pb</h1>
+  <h1>Testing</h1>
 
     <SearchFilter contacts={contacts}/>
    <AddContactForm contacts={contacts} setContacts={setContacts} imp={imp} setImp={setImp}/>
