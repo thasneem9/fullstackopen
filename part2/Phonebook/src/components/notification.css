@@ -1,4 +1,17 @@
-.notification-message{
-    color:brown;
-    font-style: italic;
+.error{
+      color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border:5px solid red;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.success{
+  color: rgb(1, 44, 7);
+  background: lightgrey;
+  font-size: 20px;
+  border:5px solid rgb(2, 223, 80);
+  padding: 10px;
+  margin-bottom: 10px;
 }

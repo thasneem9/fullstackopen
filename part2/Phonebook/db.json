@@ -1,22 +1,40 @@
 {
   "contacts": [
     {
-      "id": "3",
-      "name": "alex mor",
+      "name": "john",
       "important": false,
-      "number": "0987654"
+      "number": "12",
+      "id": "L63-s2SYau4"
     },
     {
-      "id": "4",
-      "name": "ALEX kandle",
+      "name": "alex",
       "important": false,
-      "number": "0987654"
+      "number": "123",
+      "id": "sruy1BMbzZ4"
     },
     {
-      "name": "yohan",
-      "important": true,
-      "number": "122",
-      "id": "tlVaSUxEDzQ"
+      "name": "aleex",
+      "important": false,
+      "number": "123",
+      "id": "78ONF4TLJ2o"
+    },
+    {
+      "name": "who",
+      "important": false,
+      "number": "222",
+      "id": "F__pUFb8ehE"
+    },
+    {
+      "name": "www",
+      "important": false,
+      "number": "222222",
+      "id": "szi32pAyPGk"
+    },
+    {
+      "name": "hdjksl'a;lakdj",
+      "important": false,
+      "number": "334323333",
+      "id": "bvyJ2hx7UYM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -1,9 +1,9 @@
 
 import './notification.css'
-const Notification=({message})=>{
-
+const Notification=({message,type})=>{
+console.log("notf type:",type)
     return(<>
-        <p className="notification-message">{message}</p>
+        <p className={type==='success'?'success':'error'}>{message}</p>
 
     </>)
 }

@@ -7,7 +7,10 @@ const AddContactForm=({contacts,setContacts})=>{
 const [number,setNumber]=useState('')
 const [name,setName]=useState('')
 const [imp,setImp]=useState(false)
+
 const [showNotification,setShowNotification]=useState(false)
+const [type,setType]=useState('')
+const [message,setMessage]=useState('')
 
 
 
@@ -36,25 +39,42 @@ let newContact={'name':'','important':false,'number':404404}
               promise.then(response=>{
                 console.log(response)
                 alert(`number updated for ${name}`)
+                 setName('')
+            setNumber('')
+            setShowNotification(true)
+            setMessage(`number updated for ${name}`)
+            setType('success')
               }).catch(error=>console.log("err:",error))
       //2. same name, same number : if(sameNameContact.number===number)
       }else {
 
       console.log("duplicate same number--",sameNameContact.number)
-   
+      
+        setMessage(`${name} with same number already exists Try Again`)
+        setType('error')
         setShowNotification(true)
+
+
+        
 
       }
 //2. no same contact at all
   }else{
       const data=services.addNote(newContact)
             console.log("added",data)
+            setName('')
+            setNumber('')
+            setShowNotification(true)
+            setType('success')
+            setMessage(`${name} added`)
   }
 
    
   }
   
-  
+  setTimeout(() => {
+          setShowNotification(false)
+        }, 5000)
 
     return(<>
 
@@ -70,7 +90,7 @@ let newContact={'name':'','important':false,'number':404404}
       </label>
 
       <br/>
-      {showNotification?<Notification message={`${name} with same number already exists`}/>:''}
+      {showNotification?<Notification message={message} type={type}/>:''}
       <label> Mark important
       <input type='checkbox'  onChange={(e)=>setImp(e.target.checked)}  />
        </label>
