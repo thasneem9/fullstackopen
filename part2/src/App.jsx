@@ -17,7 +17,7 @@ const [contacts,setContacts]=useState(dbcontacts.contacts)
 useEffect(()=>{
   const data=services.getAll() 
   data.then(response=>{
-  console.log("useffect log:",response)
+  
     setContacts(response)
   }
   )

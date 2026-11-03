@@ -13,28 +13,42 @@ const [imp,setImp]=useState(false)
 
 let newContact={'name':'','important':false,'number':404404}
 
-  const checkDuplicate=(arr,val)=>{
-    return arr.some(arrVal=>arrVal.name===val)
-
-  }
-  
-const handleAddContact=(e)=>{
-  e.preventDefault()
+  const handleAddContact=(e)=>{
+      e.preventDefault()
   
   newContact.name=name
   newContact.important=imp
   newContact.number=number
 
-  if(checkDuplicate(contacts,name)){
-      alert(`${name} already exists`)}
-  else{
-        //setContacts([...contacts,newContact]) needed to update in UI ????
-        const data=services.addNote(newContact)
-          
-            console.log(data)
-          
+    
+    let sameNameContact=contacts.find(c=>c.name==name)
+    console.log("found same name",sameNameContact)
+    //1.same name diff number
+    if(sameNameContact){
+      if(sameNameContact.number!=number){
+        //update numb
+        let updatedNote={...sameNameContact,number:number}
+        console.log("the updated NOte:",updatedNote,"id:",sameNameContact.id)
+        const promise=services.updateNote(sameNameContact.id,updatedNote)
+        promise.then(response=>{console.log(response.data)
+          alert(`number updated for ${name}`)
+        }).catch(error=>console.log("err:",error))
+      }
+//2. same name same number
+  }else if(sameNameContact){
+     if(sameNameContact.number==number){
+      console.log("duplicate same number--",sameNameContact.number)
+      alert(`${name} with same number already exists`)}
+  }else{
+      const data=services.addNote(newContact)
+
+            console.log("added",data)
   }
-}
+
+   
+  }
+  
+  
 
     return(<>
 

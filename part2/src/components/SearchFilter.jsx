@@ -2,7 +2,7 @@ import { useState } from "react"
 
 const SearchFilter=({contacts})=>{
 const [searchItem,setSearchItem]=useState('')
-console.log("searchHere",contacts)
+
 
 
     return(<>

@@ -29,6 +29,8 @@ const deleteNote=(id)=>{
 const promise=axios.delete(`${baseURL}/${id}`)
 return promise.then(response=>{
     return response.data
+}).catch(error=>{
+    console.log(error)
 })
 
 
