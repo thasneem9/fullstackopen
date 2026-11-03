@@ -1,23 +1,42 @@
 
 import Note from "../components/Note"
-
+import { useState,useEffect } from "react"
 const App=({notes})=>{
 
+  const [count, setCount] = useState(0)
 
-  return(
+  
+
+  console.log("count",count)
+  useEffect(()=>{
+
+    if (count < 500) {
+    setCount(count + 1)
+  }
+  
+
+  },[count])
+  return (
+  <>
+  
+  <h1>count:</h1>
 
 
-    <>
-    <h1>Notes</h1>
+
+   {/**
+     <h1>Notes</h1>
     <ul>
       { notes.map((note) => <Note key={note.id} content={note.content}/>)}
     </ul>
     
-   
-  
-    </>
-  )
+    */}
+
+  </>)
 }
+
+
+  
+
 export default App 
 
 
