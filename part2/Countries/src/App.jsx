@@ -1,90 +1,75 @@
-import { useEffect, useState } from "react"
+import { useState,useEffect } from "react"
 import axios from 'axios'
-
-
-function App() {
+const App=()=>{
 const [country,setCountry]=useState('')
-const [allCountries,setAllCountries]=useState(null)
+const [countries,setCountries]=useState([])
 const [warning,setWarning]=useState(false)
+const [showDetails,setShowDetails]=useState(false)
+const [matches,setShowMatches]=useState(false)
 
-const [countriesToDisplay,setCountriesToDisplay]=useState([])
-const [singleCountry,setSingleCountry]=useState('')
-
-
-
-//fetch countries as typed
-
-//if more than 10 matches has to be specific...
-
-//get All
+//get all the results first to operate/filter it later
 useEffect(()=>{
-  const promise=axios.get(`https://studies.cs.helsinki.fi/restcountries/api/all`)
+    const promise=axios.get("https://studies.cs.helsinki.fi/restcountries/api/all")
 promise.then(response=>{
-    setAllCountries(response.data)
-}).catch(error=>{
-  console.log(error)
-})
+  console.log(response.data)
+  setCountries(response.data)//KNOW that this wil schedule a render
+})//no need to run this every single time a state updates, hence I put it inside an empty dependecy-useffect
+//--ony run once in initial render( inital mounting ) of App component  thats why it is inside3 a useEffect
+
 },[])
 
 
-//first set country as person types [\]
-// then justtt count responses
-//if response is less than 10 only then map em out
+console.log(countries)
 
-
-console.log(allCountries)
-
+//go through each country check the length of response
 useEffect(()=>{
+  console.log(country,"mycountry")
+if(countries?.filter(c=>c.name.common.toLowerCase().includes(country?.toLowerCase())).length>10){//map is for when thers like <p> use filter as default
+//when using includes to see search-match dont forget lowercase/uppercase
+console.log("too big")
+console.log(countries?.filter(c=>c.name.common.toLowerCase().includes(country?.toLowerCase())))
+setWarning(true)
+  setShowDetails(false)
+  setShowMatches(false)
 
-  console.log(allCountries?.filter(c=>c.name.common.includes(country))  )
-   console.log(allCountries?.filter(c=>c.name.common.includes(country)).length  )
-   console.log(allCountries?.filter(c=>c.name.common.toLowerCase().includes(country.toLowerCase())).length  >10)
-   console.log("x",allCountries?.filter(c=>c.name.common.toLowerCase().includes(country.toLowerCase())).length===1)
-   if(allCountries?.filter(c=>c.name.common.toLowerCase().includes(country.toLowerCase())).length  >10){
-    setWarning(true)
-    setCountriesToDisplay([])
-       setSingleCountry('')
+}else if(countries?.filter(c=>c.name.common.toLowerCase().includes(country?.toLowerCase())).length===1){
+  setWarning(false)
+  setShowDetails(true)
+  setShowMatches(false)
 
-   }else if(allCountries?.filter(c=>c.name.common.toLowerCase().includes(country.toLowerCase())).length===1){
-      setWarning(false)
-      setCountriesToDisplay([])
-       setSingleCountry(allCountries?.filter(c=>c.name.common.toLowerCase().includes(country.toLowerCase())))
-       console.log("here-------------------------------")
-
-   }else{
-    setWarning(false)
-      setCountriesToDisplay(allCountries?.filter(c=>c.name.common.toLowerCase().includes(country.toLowerCase())))
-       setSingleCountry('')
-   }
+}else{
+  setWarning(false)
+  setShowDetails(false)
+  setShowMatches(true)
 
 
+}
 
-   
-},[country,allCountries])
+},[country])//bcs whenever country changes CHECK IF CONDITION AGAIN
 
 
-  return (
-    <>
+
+  return(<>
+
+  <label>find countries: </label>
+  <input placeholder="search country by name..." type="text" onChange={(e)=>setCountry(e.target.value)}/>
   
-    <label>Find Countries: </label>
-    <input type="text" placeholder="search for a country" onChange={(e)=>setCountry(e.target.value)} />
-    {/*using includes only display if less than 10 */}
-    {warning?<p>too many matches, be more specific...</p>:''}
-    {countriesToDisplay?countriesToDisplay.map((c,i)=>(<p key={i}>{c.name.common}</p>)):''}
+  {warning?<p>too many matches...be more specific</p>:''}
+  {showDetails? <>
+  <p>Name:
+  {countries.find(c=>c.name.common.toLowerCase().includes(country.toLowerCase())).name.common}
+  </p></>  :''
+  }
+  {matches?
+    countries.filter(c=>c.name.common.toLowerCase().includes(country?.toLowerCase())).map(
+      c=>(
+     
+        <p>{c.name.common}</p>
+     
+      )
+    )     :''}
   
-    {singleCountry?
-    (
-      <>
-    <p>name: {singleCountry[0].name.common} </p>
-    <p>capital:{singleCountry[0].capital}</p>
-      <p>language:{   Object.values(singleCountry[0].languages)[0]     }</p>
-    </>
-    )
-    
-    :''}
-
-    
-    </>
+  </>
   )
 }
 
