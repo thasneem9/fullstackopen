@@ -1,10 +1,27 @@
 import express from 'express'
 import persons from './persons.js'
+import morgan from 'morgan'
 const app=express()
 app.use(express.json())
+
+
+morgan.token('type',(req, res)=>{
+      if(req.method==="POST"){
+       return JSON.stringify(req.body)
+      }else{
+            return ""
+      }
+       })
+
+app.use(morgan(':method :url :status :response-time[digits] :type'))
+
+
+
 app.get('/',(request,response)=>{
 response.send(persons)
 })
+
+
 app.get('/info',(request,response)=>{
       response.send(`<h1>Phone Book has ${persons.length} Entries</h1>`)
 
@@ -31,6 +48,7 @@ app.delete('/:id',(request,response)=>{
       console.log('updatedNotes:',updatedNotes)
       response.send(updatedNotes)
 })
+
 app.post('/persons',(request,response)=>{
       const newPerson=request.body
       const newId=Math.random()*10
@@ -51,6 +69,8 @@ app.post('/persons',(request,response)=>{
 
 
 })
+
+
 app.listen(3001,()=>{
       console.log("app listening on port 3001")
 })
